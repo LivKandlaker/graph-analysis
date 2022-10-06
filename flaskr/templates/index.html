@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Graph Analysis</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style/mystyle.css') }}">
+
+</head>
+
+<body>
+<div><!The title & sub-title & navigation-bar for the system>
+
+  <h1 class="title_of_page">Graph Analysis</h1>
+  <p class="sub_title">This is the Ultimate web for your analysis stocks or coins graphs</p>
+
+  <div class="navbar" > <!navigation-bar>
+
+      <a href="index.html">Home   |</a>
+      <a href="plots.html">Last Plot   |</a>
+      <a href="login.html">Login & Sign in   |</a>
+      <a href="https://drive.google.com/drive/folders/1oTlhKkgTYABSL3zARI41nXMvbJ695OR0?usp=sharing">About</a>
+
+` </div>
+</div>
+  <div>
+      <div><!The fibonacci tool include Title, Sub-title, period of data, Symbol-name of stocks/coins and submit>
+
+          <h2 class="margin">Let's talk about {{ FiboDataToRender }} : </h2>
+          <p class="margin">{{ FiboContentToRender }}</p>
+
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_Fibonacci') }}"  method="post">
+          <label for="periodDateStartedFibonacci">Start Date:</label>
+          <input type="date" name="periodDateStarted" id="periodDateStartedFibonacci">
+          <label for="periodDateEndFibonacci">End Date:</label>
+          <input type="date" name="periodDateEnd" id="periodDateEndFibonacci">
+          <label for="projectFilepathFibonacci">Symbol of stock:</label>
+          <input type="text" name="projectFilepath"  placeholder="Choose symbol of stock" id="projectFilepathFibonacci">
+          <input class="gold" type="submit" value="Fibonachi tool">
+      </form>
+      </div>
+
+      <div><!The Volume&Trends tool include Title, Sub-title, period of data, Symbol-name of stocks/coins and submit>
+
+          <h2 class="margin">Let's talk about {{ VolDataToRender }} : </h2>
+          <p class="margin">{{ VolContentToRender }}</p>
+
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_to_Trend') }}" method="post">
+          <label for="periodDateStartedTrendVolume">Start Date:</label>
+          <input type="date" name="periodDateStarted" id="periodDateStartedTrendVolume">
+          <label for="periodDateEndTrendVolume">End Date:</label>
+          <input type="date" name="periodDateEnd" id="periodDateEndTrendVolume">
+          <label for="projectFilepathTrendVolume">Symbol Name:</label>
+          <input type="text" name="projectFilepath" placeholder="Choose symbol of stock" id="projectFilepathTrendVolume">
+          <input class="gold" type="submit" value="Trends & Volume">
+      </form>
+      </div>
+
+      <div><! The ROC-indicator tool include Title, Sub-title, period of data, Symbol-name of stocks/coins, ROC_num and submit >
+
+          <h2 class="margin">Let's talk about {{ RocDataToRender }} : </h2>
+          <p class="margin">{{ RocContentToRender }}</p>
+
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_ROC') }}" method="post">
+          <label for="periodDateStartedRoc">Start Date:</label>
+          <input type="date" name="ROCperiodDateStart" id="periodDateStartedRoc">
+          <label for="periodDateEndRoc">End Date:</label>
+          <input type="date" name="ROCperiodDateEnd" id="periodDateEndRoc">
+          <label for="projectFilepathRoc">Enter Symbol of stock:</label>
+          <input type="text" name="projectFilepath" placeholder="Choose symbol of stock" id="projectFilepathRoc">
+          <label for="termTradingRoc">Enter term of Trading:</label>
+          <input type="number" name="termTrading" placeholder="Choose number of period" id="termTradingRoc">
+          <input class="gold" type="submit" value="ROC-Momentum tool" >
+      </form>
+      </div>
+
+      <div><! The Average-indicator tool named SMA simple moving average, Sub-title, period of data,
+          Symbol-name of stocks/coins and submit >
+
+          <h2 class="margin">Let's talk about {{ SMADataToRender }} : </h2>
+          <p class="margin">{{ SMAContentToRender }}</p>
+
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_SMA') }}" method="post">
+          <label for="SMAperiodDateStart">Start Date:</label>
+          <input type="date" name="SMAperiodDateStart" id="SMAperiodDateStart">
+          <label for="SMAperiodDateEnd">End Date:</label>
+          <input type="date" name="SMAperiodDateEnd" id="SMAperiodDateEnd">
+          <label for="SMAprojectFilePath">Enter symbol of stock:</label>
+          <input type="text" name="projectFilepath" placeholder="Choose symbol of stock" id="SMAprojectFilePath">
+          <input class="gold" type="submit" value="SMA 20 & 100 Days" >
+      </form>
+      </div>
+       <div><! The CandleStick-chart Sub-title, period of data, Symbol-name of stocks/coins and submit >
+
+           <h2 class="margin">Let's talk about {{ CandleStickDataToRender }} : </h2>
+          <p class="margin">{{ CandleStickContentToRender }}</p>
+           <a target="_blank" href= " {{ CandleStickImage }} " >For more explanation!</a>
+
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_CandleStick') }}" method="post">
+          <label for="CandleStickPeriodDateStart">Start Date:</label>
+          <input type="date" name="CandleStickPeriodDateStart" id="CandleStickPeriodDateStart">
+          <label for="CandleStickPeriodDateEnd">End Date:</label>
+          <input type="date" name="CandleStickPeriodDateEnd" id="CandleStickPeriodDateEnd">
+          <label for="projectFilepath">Enter symbol of stock:</label>
+          <input type="text" name="projectFilepath" placeholder="Choose symbol of stock" id="projectFilepath">
+          <input class="gold" type="submit" value="Candle Stick chart" >
+      </form>
+        </div>
+
+      <div>
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_Mail') }}" method="post">
+
+          <label for="MailProjectFilePath">Enter Your Email:</label>
+          <input type="text" name="projectFilepath" placeholder="Example: Kandalker.liv@gmail.com" id="MailProjectFilePath">
+          <input class="gold" type="submit" value="SEND" >
+
+      </form>
+
+      </div>
+            <div>
+
+          <h2 class="margin">Let's talk about RSI </h2>
+          <p class="margin">RSI bla bla bla</p>
+
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_RSI') }}"  method="post">
+          <label for="periodDateStartedRSI">Start Date:</label>
+          <input type="date" name="periodDateStarted" id="periodDateStartedRSI">
+          <label for="periodDateEndFibonacci">End Date:</label>
+          <input type="date" name="periodDateEnd" id="periodDateEndRSI">
+          <label for="projectFilepathFibonacci">Symbol of stock:</label>
+          <input type="text" name="projectFilepath"  placeholder="Choose symbol of stock" id="projectFilepathRSI">
+          <input class="gold" type="submit" value="RSI tool">
+      </form>
+      </div>
+      <div>
+          <h2 class="margin">Let's talk about MACD </h2>
+          <p class="margin">MACD bla bla bla</p>
+      <form target="_blank" class="handle_Data" action="{{ url_for('Send_To_MACD') }}"  method="post">
+          <label for="periodDateStartedMACD">Start Date:</label>
+          <input type="date" name="periodDateStarted" id="periodDateStartedMACD">
+          <label for="periodDateEndFibonacci">End Date:</label>
+          <input type="date" name="periodDateEnd" id="periodDateEndMACD">
+          <label for="projectFilepathMACD">Symbol of stock:</label>
+          <input type="text" name="projectFilepath"  placeholder="Choose symbol of stock" id="projectFilepathMACD">
+          <input class="gold" type="submit" value="MACD tool">
+      </form>
+      </div>
+
+  </div>
+<div>
+
+</div>
+</body>
+
+</html>
